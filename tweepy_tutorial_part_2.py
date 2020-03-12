@@ -24,6 +24,19 @@ class TwitterClient():
             tweets.append(tweet)
         return tweets
 
+    def get_friedn_list(self, num_friends):
+        friends_list = []
+        for friend in Cursor(self.twitter_client.friends, id=self.twitter_user).items(num_friends):
+            friends_list.append(friend)
+        return friends_list
+
+    # tweets from the personal timeline
+    def get_home_timeline_tweets(self, num_tweets):
+        home_timeline_tweets = []
+        for tweet in Cursor(self.twitter_client.home_timeline, id=self.twitter_user).items(num_tweets):
+            home_timeline_tweets.append(tweet)
+        return home_timeline_tweets
+
 
 class TwitterAuthenticator():
 
